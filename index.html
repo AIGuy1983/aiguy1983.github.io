@@ -3,95 +3,127 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio</title>
-    <link href="https://fonts.googleapis.com/css2?family=Geo&display=swap" rel="stylesheet">
+    <title>AI & Crypto Portfolio</title>
     <style>
         body {
             margin: 0;
             font-family: 'Geo', sans-serif;
-            color: #FFD700; /* Yellow text */
-            background: url('images/AI.jpg') no-repeat center center fixed;
-            background-size: cover;
+            color: yellow;
+            background-color: black;
+            line-height: 1.6;
+        }
+
+        header {
+            position: sticky;
+            top: 0;
+            background: rgba(0, 0, 0, 0.9);
+            padding: 10px 20px;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid red;
+        }
+
+        header nav {
+            display: flex;
+            gap: 20px;
+        }
+
+        header nav a {
+            color: yellow;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
+
+        header nav a:hover {
+            color: red;
         }
 
         .banner {
-            background: rgba(0, 0, 0, 0.7); /* Semi-transparent black */
-            padding: 30px;
-            margin: 20px auto;
-            border-radius: 10px;
-            width: 95%;
-            max-width: 900px;
             text-align: center;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
-        }
-
-        h1, h2 {
-            margin: 15px 0;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
-        }
-
-        p {
-            margin: 15px 0;
-            line-height: 1.8;
-            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
-            font-size: 1.1rem;
-            text-align: justify; /* Makes the text fill out the page more */
-        }
-
-        .image-container {
-            text-align: center;
-            margin: 20px 0;
-        }
-
-        .image-container img {
-            max-width: 70%; /* Shrinks the image size */
-            height: auto;
-            border-radius: 10px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
-        }
-
-        .contact {
-            background: rgba(0, 0, 0, 0.8);
-            color: #FFD700;
+            background: rgba(0, 0, 0, 0.7);
             padding: 20px;
-            margin: 20px auto;
+            margin-bottom: 20px;
+        }
+
+        .banner h1 {
+            font-size: 3rem;
+            margin: 0;
+        }
+
+        .section {
+            padding: 50px 20px;
+        }
+
+        .section h2 {
+            font-size: 2.5rem;
+            border-bottom: 2px solid red;
+            display: inline-block;
+            margin-bottom: 20px;
+        }
+
+        .section p {
+            font-size: 1.2rem;
+        }
+
+        .projects img {
+            max-width: 100%;
+            height: auto;
+            border: 2px solid red;
             border-radius: 10px;
-            width: 95%;
-            max-width: 900px;
+            margin-top: 20px;
+        }
+
+        footer {
             text-align: center;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+            padding: 10px;
+            background: rgba(0, 0, 0, 0.8);
+            color: yellow;
+            border-top: 2px solid red;
         }
 
-        .contact a {
-            color: #FFD700;
-            text-decoration: none;
-            font-weight: bold;
-        }
-
-        .contact a:hover {
-            text-decoration: underline;
+        html {
+            scroll-behavior: smooth;
         }
     </style>
 </head>
 <body>
-    <div class="banner">
+    <header>
+        <div class="logo">AI & Crypto</div>
+        <nav>
+            <a href="#about">About Me</a>
+            <a href="#projects">Projects</a>
+            <a href="#contact">Contact</a>
+        </nav>
+    </header>
+
+    <section class="banner">
         <h1>Welcome to My Portfolio</h1>
-        <h2>AI Innovator & Cryptocurrency Specialist</h2>
-        <p>
-            With years of experience in artificial intelligence and blockchain technology, I specialize in creating cutting-edge solutions. 
-            From developing predictive machine learning models to crafting innovative crypto bots, I combine technical expertise with creative thinking. 
-            My projects span AI-driven web scraping, cryptocurrency forecasting, and ethical monitoring tools for online safety.
-        </p>
-    </div>
+        <p>Exploring AI, Cryptocurrency, and Beyond</p>
+    </section>
 
-    <div class="image-container">
-        <img src="images/Chatbot.jpg" alt="Chatbot AI">
-    </div>
+    <section id="about" class="section">
+        <h2>About Me</h2>
+        <p>I am an experienced AI developer and cryptocurrency enthusiast. My work focuses on creating innovative tools using AI technologies like TensorFlow and Hugging Face. I also specialize in cryptocurrency analysis, machine learning models, and ethical web scraping projects to gather meaningful insights.</p>
+    </section>
 
-    <div class="contact">
-        <h2>Contact Me</h2>
-        <p>Email: <a href="mailto:aiguy1983@gmail.com">aiguy1983@gmail.com</a></p>
-        <p>GitHub: <a href="https://github.com/aiguy1983" target="_blank">github.com/aiguy1983</a></p>
-    </div>
+    <section id="projects" class="section projects">
+        <h2>Projects</h2>
+        <p>Here are some of my recent projects:</p>
+        <img src="AI.jpg" alt="AI Project">
+        <img src="Chatbot.jpg" alt="Chatbot Project">
+    </section>
+
+    <section id="contact" class="section">
+        <h2>Contact</h2>
+        <p>If you'd like to work together or learn more about my projects, feel free to reach out to me!</p>
+        <p>Email: aiguy@example.com</p>
+    </section>
+
+    <footer>
+        <p>© 2025 AI & Crypto Portfolio. All rights reserved.</p>
+    </footer>
 </body>
 </html>
