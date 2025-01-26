@@ -3,90 +3,137 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI Guy Portfolio</title>
+    <title>AI Guy 1983</title>
     <style>
         body {
             font-family: 'Geo', sans-serif;
             margin: 0;
             padding: 0;
-            background: url('./images/AI.jpg') no-repeat center center fixed;
+            background: url('images/AI.jpg') no-repeat center center fixed;
             background-size: cover;
-            color: #fff;
+            color: #f0f0f0;
         }
+
         header {
+            text-align: center;
+            background-color: rgba(0, 0, 0, 0.6);
+            padding: 20px;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2.5rem;
+        }
+
+        section {
+            padding: 20px;
+            margin: 20px auto;
             background-color: rgba(0, 0, 0, 0.7);
-            padding: 1em;
+            border-radius: 8px;
+            max-width: 800px;
+        }
+
+        h2 {
             text-align: center;
         }
-        .content {
-            padding: 2em;
+
+        #crypto-search {
+            text-align: center;
+            margin: 20px 0;
         }
-        .chatbot-section {
-            background-color: rgba(0, 0, 0, 0.8);
-            padding: 1em;
-            margin: 2em 0;
-            border-radius: 10px;
+
+        #crypto-search input {
+            padding: 10px;
+            font-size: 1rem;
+            border-radius: 5px;
+            border: none;
         }
-        .crypto-info {
-            background-color: rgba(0, 0, 0, 0.8);
-            padding: 1em;
-            border-radius: 10px;
+
+        #crypto-search button {
+            padding: 10px 20px;
+            font-size: 1rem;
+            border-radius: 5px;
+            border: none;
+            background-color: #ff6600;
+            color: white;
+            cursor: pointer;
+        }
+
+        #crypto-search button:hover {
+            background-color: #cc5200;
+        }
+
+        #crypto-result {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 1.2rem;
+        }
+
+        footer {
+            text-align: center;
+            padding: 10px;
+            background-color: rgba(0, 0, 0, 0.6);
+            margin-top: 20px;
         }
     </style>
 </head>
 <body>
     <header>
-        <h1>AI Guy Portfolio</h1>
-        <p>Email: <a href="mailto:aiguy1983@gmail.com">aiguy1983@gmail.com</a></p>
+        <h1>Welcome to AI Guy 1983's Portfolio</h1>
     </header>
-    <div class="content">
-        <section id="about-me">
-            <h2>About Me</h2>
-            <p>I specialize in artificial intelligence, cryptocurrency, and building innovative projects that bridge the gap between technology and real-world applications. From creating machine learning models to developing predictive bots, my work focuses on leveraging AI to solve complex problems efficiently. I’m also well-versed in blockchain technology and have experience developing tools for cryptocurrency analysis and tracking.</p>
-        </section>
 
-        <section id="projects">
-            <h2>My Projects</h2>
-            <p>Check out some of my work below!</p>
-        </section>
+    <section>
+        <h2>About Me</h2>
+        <p>
+            I am an experienced AI and cryptocurrency enthusiast with a background in building innovative solutions. From machine learning models to cryptocurrency bots, I specialize in leveraging cutting-edge technologies to create impactful projects.
+        </p>
+    </section>
 
-        <section class="chatbot-section">
-            <h2>Crypto Price Chatbot</h2>
-            <div id="chatbot-output">Ask me the current price of any cryptocurrency!</div>
-            <input type="text" id="chatbot-input" placeholder="Type a cryptocurrency name">
-            <button onclick="getCryptoPrice()">Submit</button>
-        </section>
+    <section>
+        <h2>Projects</h2>
+        <p>
+            Explore my AI-powered tools and cryptocurrency trackers. These projects showcase my expertise in technology and innovation.
+        </p>
+    </section>
 
-        <section class="crypto-info">
-            <h2>Latest Cryptocurrency Info</h2>
-            <p>Get real-time updates on cryptocurrency prices here.</p>
-        </section>
-    </div>
+    <section id="crypto-search">
+        <h2>Check Cryptocurrency Prices</h2>
+        <input type="text" id="crypto-input" placeholder="Enter cryptocurrency name">
+        <button onclick="fetchCryptoPrice()">Get Price</button>
+        <div id="crypto-result"></div>
+    </section>
+
+    <footer>
+        <p>Contact me: <a href="mailto:aiguy1983@gmail.com">aiguy1983@gmail.com</a></p>
+    </footer>
 
     <script>
-        async function getCryptoPrice() {
-            const input = document.getElementById('chatbot-input').value.trim().toLowerCase();
-            const output = document.getElementById('chatbot-output');
+        async function fetchCryptoPrice() {
+            const cryptoName = document.getElementById('crypto-input').value.toLowerCase();
+            const resultDiv = document.getElementById('crypto-result');
 
-            if (!input) {
-                output.textContent = "Please enter a cryptocurrency name.";
+            if (!cryptoName) {
+                resultDiv.textContent = 'Please enter a cryptocurrency name.';
                 return;
             }
 
             try {
-                const response = await fetch(`https://api.coingecko.com/api/v3/simple/price?ids=${input}&vs_currencies=usd`);
-                if (!response.ok) throw new Error("Invalid response from API");
+                const response = await fetch(`https://api.coingecko.com/api/v3/simple/price?ids=${cryptoName}&vs_currencies=usd`);
+
+                if (!response.ok) {
+                    throw new Error('Failed to fetch data');
+                }
 
                 const data = await response.json();
 
-                if (data[input] && data[input].usd) {
-                    output.textContent = `The current price of ${input.charAt(0).toUpperCase() + input.slice(1)} is $${data[input].usd}.`;
+                if (data[cryptoName]) {
+                    const price = data[cryptoName].usd;
+                    resultDiv.textContent = `The current price of ${cryptoName} is $${price}.`;
                 } else {
-                    output.textContent = "Cryptocurrency not found. Please try another name.";
+                    resultDiv.textContent = 'Cryptocurrency not found. Please check the name and try again.';
                 }
             } catch (error) {
-                output.textContent = "Error fetching data. Please try again later.";
-                console.error(error);
+                resultDiv.textContent = 'Error fetching cryptocurrency price. Please try again later.';
             }
         }
     </script>
