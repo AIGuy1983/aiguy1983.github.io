@@ -1,141 +1,130 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI Guy 1983</title>
+    <title>AI Guy Portfolio</title>
     <style>
         body {
-            font-family: 'Geo', sans-serif;
             margin: 0;
-            padding: 0;
-            background: url('images/AI.jpg') no-repeat center center fixed;
+            font-family: Arial, sans-serif;
+            color: yellow;
+            background: url('AI.jpg') no-repeat center center fixed;
             background-size: cover;
-            color: #f0f0f0;
         }
 
         header {
-            text-align: center;
-            background-color: rgba(0, 0, 0, 0.6);
+            background-color: rgba(0, 0, 0, 0.7);
             padding: 20px;
+            text-align: center;
         }
 
         header h1 {
             margin: 0;
-            font-size: 2.5rem;
+            font-size: 2.5em;
         }
 
         section {
             padding: 20px;
+            background-color: rgba(0, 0, 0, 0.6);
+            margin: 20px;
+            border-radius: 10px;
+        }
+
+        .crypto-tracker {
+            padding: 20px;
+            background-color: rgba(0, 0, 0, 0.8);
+            color: yellow;
+            border-radius: 10px;
+            max-width: 600px;
             margin: 20px auto;
-            background-color: rgba(0, 0, 0, 0.7);
-            border-radius: 8px;
-            max-width: 800px;
-        }
-
-        h2 {
             text-align: center;
-        }
-
-        #crypto-search {
-            text-align: center;
-            margin: 20px 0;
-        }
-
-        #crypto-search input {
-            padding: 10px;
-            font-size: 1rem;
-            border-radius: 5px;
-            border: none;
-        }
-
-        #crypto-search button {
-            padding: 10px 20px;
-            font-size: 1rem;
-            border-radius: 5px;
-            border: none;
-            background-color: #ff6600;
-            color: white;
-            cursor: pointer;
-        }
-
-        #crypto-search button:hover {
-            background-color: #cc5200;
-        }
-
-        #crypto-result {
-            text-align: center;
-            margin-top: 20px;
-            font-size: 1.2rem;
         }
 
         footer {
+            background-color: rgba(0, 0, 0, 0.8);
             text-align: center;
             padding: 10px;
-            background-color: rgba(0, 0, 0, 0.6);
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+
+        input[type="text"] {
+            padding: 10px;
+            margin: 10px;
+            border: none;
+            border-radius: 5px;
+            width: 80%;
+            max-width: 400px;
+        }
+
+        button {
+            padding: 10px 20px;
+            margin: 10px;
+            border: none;
+            border-radius: 5px;
+            background-color: yellow;
+            color: black;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: orange;
+        }
+
+        #crypto-data {
             margin-top: 20px;
         }
     </style>
 </head>
+
 <body>
     <header>
-        <h1>Welcome to AI Guy 1983's Portfolio</h1>
+        <h1>AI Guy Portfolio</h1>
     </header>
 
     <section>
         <h2>About Me</h2>
-        <p>
-            I am an experienced AI and cryptocurrency enthusiast with a background in building innovative solutions. From machine learning models to cryptocurrency bots, I specialize in leveraging cutting-edge technologies to create impactful projects.
-        </p>
+        <p>I am an experienced AI developer and cryptocurrency enthusiast. I specialize in building AI tools and bots, creating insightful machine learning models, and exploring innovative ways to integrate AI with blockchain technologies. My projects reflect my passion for cutting-edge technology and my commitment to solving real-world problems.</p>
     </section>
 
-    <section>
-        <h2>Projects</h2>
-        <p>
-            Explore my AI-powered tools and cryptocurrency trackers. These projects showcase my expertise in technology and innovation.
-        </p>
-    </section>
-
-    <section id="crypto-search">
-        <h2>Check Cryptocurrency Prices</h2>
-        <input type="text" id="crypto-input" placeholder="Enter cryptocurrency name">
-        <button onclick="fetchCryptoPrice()">Get Price</button>
-        <div id="crypto-result"></div>
-    </section>
+    <div class="crypto-tracker">
+        <h2>Crypto Tracker</h2>
+        <input type="text" id="crypto-input" placeholder="Enter cryptocurrency (e.g., bitcoin)">
+        <button onclick="fetchCryptoData()">Get Price</button>
+        <div id="crypto-data"></div>
+    </div>
 
     <footer>
-        <p>Contact me: <a href="mailto:aiguy1983@gmail.com">aiguy1983@gmail.com</a></p>
+        <p>Contact me at <a href="mailto:aiguy1983@gmail.com">aiguy1983@gmail.com</a></p>
     </footer>
 
     <script>
-        async function fetchCryptoPrice() {
+        async function fetchCryptoData() {
             const cryptoName = document.getElementById('crypto-input').value.toLowerCase();
-            const resultDiv = document.getElementById('crypto-result');
-
-            if (!cryptoName) {
-                resultDiv.textContent = 'Please enter a cryptocurrency name.';
-                return;
-            }
+            const apiUrl = `https://api.coingecko.com/api/v3/simple/price?ids=${cryptoName}&vs_currencies=usd`;
 
             try {
-                const response = await fetch(`https://api.coingecko.com/api/v3/simple/price?ids=${cryptoName}&vs_currencies=usd`);
-
+                const response = await fetch(apiUrl);
                 if (!response.ok) {
-                    throw new Error('Failed to fetch data');
+                    throw new Error('Cryptocurrency not found');
                 }
-
                 const data = await response.json();
+                const price = data[cryptoName]?.usd;
 
-                if (data[cryptoName]) {
-                    const price = data[cryptoName].usd;
-                    resultDiv.textContent = `The current price of ${cryptoName} is $${price}.`;
+                if (price) {
+                    document.getElementById('crypto-data').innerHTML = `<p>The current price of <strong>${cryptoName}</strong> is $${price.toFixed(2)}</p>`;
                 } else {
-                    resultDiv.textContent = 'Cryptocurrency not found. Please check the name and try again.';
+                    document.getElementById('crypto-data').innerHTML = `<p>Cryptocurrency not found. Please check the name and try again.</p>`;
                 }
             } catch (error) {
-                resultDiv.textContent = 'Error fetching cryptocurrency price. Please try again later.';
+                document.getElementById('crypto-data').innerHTML = `<p>Error: ${error.message}</p>`;
             }
         }
     </script>
 </body>
+
 </html>
