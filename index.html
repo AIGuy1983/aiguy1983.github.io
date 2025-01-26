@@ -3,34 +3,78 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI Portfolio</title>
+    <title>My AI Projects</title>
     <style>
         body {
-            background-color: black;
-            color: yellow;
+            margin: 0;
             font-family: Arial, sans-serif;
+            color: #fff;
+            background: url('images/AI.jpg') no-repeat center center fixed;
+            background-size: cover;
+        }
+
+        .overlay {
+            background: rgba(0, 0, 0, 0.7);
+            padding: 20px;
+        }
+
+        header {
             text-align: center;
+            padding: 20px 0;
+            background: rgba(0, 0, 0, 0.8);
         }
-        .banner {
-            margin: 20px auto;
-            max-width: 80%;
+
+        header h1 {
+            font-size: 2.5rem;
         }
-        img {
+
+        section {
+            max-width: 900px;
+            margin: 30px auto;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.6);
+            border-radius: 10px;
+        }
+
+        .project {
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .project img {
             max-width: 100%;
             height: auto;
-            border: 5px solid red;
+            border-radius: 10px;
         }
-        .content {
-            padding: 20px;
+
+        footer {
+            text-align: center;
+            margin: 20px 0;
+            padding: 10px;
+            background: rgba(0, 0, 0, 0.8);
+            font-size: 0.9rem;
         }
     </style>
 </head>
 <body>
-    <h1>Welcome to My AI Portfolio</h1>
-    <div class="content">
-        <p>This is a showcase of my AI projects and expertise in cryptocurrency.</p>
+    <div class="overlay">
+        <header>
+            <h1>Welcome to My AI Projects</h1>
+        </header>
+        <section>
+            <h2>About Me</h2>
+            <p>
+                I am an experienced developer focusing on AI, cryptocurrency, and innovative projects. 
+                My goal is to push the boundaries of machine learning and data analytics to solve real-world problems.
+            </p>
+        </section>
+        <section class="project">
+            <h2>My Latest Project</h2>
+            <img src="images/Chatbot.jpg" alt="Chatbot Project">
+        </section>
     </div>
-    <img src="Images\Chatbot.jpg" alt="Chatbot AI" class="banner">
-    <img src="Images\AI.jpg" alt="AI Projects" class="banner">
+    <footer>
+        <p>Contact: your.email@example.com</p>
+    </footer>
 </body>
 </html>
