@@ -54,6 +54,44 @@
             background: rgba(0, 0, 0, 0.8);
             font-size: 0.9rem;
         }
+
+        footer a {
+            color: #00aaff;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Mobile Responsive Styling */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2rem;
+            }
+
+            section {
+                padding: 15px;
+            }
+
+            .project img {
+                width: 90%;
+            }
+        }
+
+        @media (max-width: 480px) {
+            header h1 {
+                font-size: 1.8rem;
+            }
+
+            section {
+                padding: 10px;
+            }
+
+            footer {
+                font-size: 0.8rem;
+            }
+        }
     </style>
 </head>
 <body>
@@ -64,8 +102,11 @@
         <section>
             <h2>About Me</h2>
             <p>
-                I am an experienced developer focusing on AI, cryptocurrency, and innovative projects. 
-                My goal is to push the boundaries of machine learning and data analytics to solve real-world problems.
+                I am a seasoned developer with a strong background in artificial intelligence, cryptocurrency, and advanced technology projects. With years of experience in networking, machine learning, and data analytics, I specialize in building innovative tools that tackle complex challenges.
+
+My work spans a range of cutting-edge fields, including AI-powered chatbots, predictive crypto investment tools, and web scrapers designed for deep web exploration. I thrive on combining technical expertise with creative problem-solving to push boundaries and deliver meaningful results.
+
+When I’m not working on tech projects, I’m constantly learning about emerging technologies to stay ahead in this ever-evolving field. My goal is to create solutions that not only address current needs but also shape the future of AI and blockchain technology.
             </p>
         </section>
         <section class="project">
@@ -74,7 +115,7 @@
         </section>
     </div>
     <footer>
-        <p>Contact: your.email@example.com</p>
+        <p>Contact: <a href="mailto:aiguy1983@gmail.com">aiguy1983@gmail.com</a></p>
     </footer>
 </body>
 </html>
