@@ -1,158 +1,123 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AI and Cryptocurrency</title>
-  <style>
-    body {
-      font-family: 'Poppins', sans-serif;
-      margin: 0;
-      padding: 0;
-      background-color: #1e1e2e;
-      color: #f8f8f8;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI-Driven Crypto Insights</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #121212;
+            color: #e0e0e0;
+        }
 
-    header {
-      background: url('./images/AI.jpg') no-repeat center center/cover;
-      height: 60vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      color: #fff;
-    }
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            color: #ffffff;
+            z-index: 1000;
+            overflow: hidden;
+        }
 
-    header h1 {
-      font-size: 3rem;
-      text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.8);
-    }
+        .trackbar {
+            display: flex;
+            align-items: center;
+            height: 40px;
+            overflow: hidden;
+            white-space: nowrap;
+        }
 
-    .intro {
-      text-align: center;
-      padding: 20px;
-      background: #252539;
-      margin-bottom: 20px;
-      border-radius: 10px;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
-    }
+        .trackbar div {
+            display: inline-block;
+            padding: 0 20px;
+            animation: scroll 15s linear infinite;
+        }
 
-    .intro h2 {
-      font-size: 2rem;
-      color: #ffd700;
-    }
+        .trackbar span {
+            margin-right: 15px;
+            color: #ffcc00;
+            font-weight: bold;
+        }
 
-    .projects, .crypto-section {
-      padding: 20px;
-    }
+        @keyframes scroll {
+            from {
+                transform: translateX(100%);
+            }
 
-    .projects img, .crypto-section img {
-      max-width: 100%;
-      height: auto;
-      border-radius: 10px;
-      margin: 10px 0;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.6);
-    }
+            to {
+                transform: translateX(-100%);
+            }
+        }
 
-    .crypto-section {
-      background: #303040;
-      padding: 20px;
-      border-radius: 10px;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
-    }
+        main {
+            margin-top: 60px;
+            padding: 20px;
+        }
 
-    .crypto-section h2 {
-      font-size: 2rem;
-      margin-bottom: 20px;
-      color: #40c4ff;
-    }
+        .crypto-item {
+            display: flex;
+            align-items: center;
+            margin: 10px 0;
+        }
 
-    .crypto-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-      gap: 20px;
-    }
-
-    .crypto-card {
-      background: #252539;
-      border-radius: 10px;
-      text-align: center;
-      padding: 15px;
-      color: #fff;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
-    }
-
-    .crypto-card img {
-      width: 50px;
-      height: 50px;
-      margin-bottom: 10px;
-    }
-
-    footer {
-      text-align: center;
-      padding: 20px;
-      background: #1b1b2f;
-      color: #aaa;
-      font-size: 0.9rem;
-    }
-
-    footer a {
-      color: #40c4ff;
-      text-decoration: none;
-    }
-  </style>
+        .crypto-item img {
+            width: 30px;
+            height: 30px;
+            margin-right: 10px;
+        }
+    </style>
 </head>
+
 <body>
-  <header>
-    <h1>AI & Cryptocurrency: The Future of Finance</h1>
-  </header>
+    <header>
+        <div class="trackbar">
+            <div id="rollingContent">
+                <span>Bitcoin:</span> Bitcoin price is up 3% today. <span>Ethereum:</span> Ethereum might hit $2,000 soon! <span>AI in Crypto:</span> Learn how AI is transforming finance!
+            </div>
+        </div>
+    </header>
 
-  <section class="intro">
-    <h2>Welcome to the Revolution</h2>
-    <p>AI and cryptocurrency are redefining how we view finance. Discover how artificial intelligence is powering smarter investments and unlocking new potentials in blockchain technology.</p>
-  </section>
+    <main>
+        <h1>Welcome to AI-Driven Crypto Insights</h1>
+        <p>AI and cryptocurrency are reshaping the financial world. Stay ahead with real-time data, insights, and the latest trends.</p>
 
-  <section class="projects">
-    <h2>My AI Projects</h2>
-    <img src="./images/Chatbot.jpg" alt="Chatbot Project">
-    <p>Explore my groundbreaking work in AI, including predictive tools and chatbots that simplify complex challenges in modern technology.</p>
-  </section>
+        <section>
+            <h2>Top 100 Cryptocurrencies</h2>
+            <div class="crypto-item">
+                <img src="C:\Users\woodc\Desktop\Scrappers\images\Chatbot.jpg" alt="Chatbot">
+                <p>Bitcoin (BTC): $43,000</p>
+            </div>
+            <div class="crypto-item">
+                <img src="C:\Users\woodc\Desktop\Scrappers\images\AI.jpg" alt="AI">
+                <p>Ethereum (ETH): $3,200</p>
+            </div>
+            <!-- Add more crypto items dynamically -->
+        </section>
+    </main>
 
-  <section class="crypto-section">
-    <h2>Top 100 Cryptocurrencies</h2>
-    <div id="crypto-info" class="crypto-grid">
-      <!-- Crypto cards will populate here -->
-    </div>
-  </section>
+    <script>
+        // Optionally, fetch live data for the trackbar from an API
+        async function fetchCryptoInsights() {
+            try {
+                const response = await fetch('https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum&vs_currencies=usd');
+                const data = await response.json();
 
-  <footer>
-    <p>Contact me: <a href="mailto:aiguy1983@gmail.com">aiguy1983@gmail.com</a></p>
-  </footer>
+                const rollingContent = document.getElementById('rollingContent');
+                rollingContent.innerHTML = `
+                    <span>Bitcoin:</span> $${data.bitcoin.usd} <span>Ethereum:</span> $${data.ethereum.usd}
+                `;
+            } catch (error) {
+                console.error('Failed to fetch crypto insights:', error);
+            }
+        }
 
-  <script>
-    async function fetchCrypto() {
-      try {
-        const response = await fetch('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=false');
-        const cryptos = await response.json();
-        const cryptoContainer = document.getElementById('crypto-info');
-        cryptoContainer.innerHTML = ''; // Clear previous content
-
-        cryptos.forEach((crypto) => {
-          const div = document.createElement('div');
-          div.className = 'crypto-card';
-          div.innerHTML = `
-            <img src="${crypto.image}" alt="${crypto.name}">
-            <p><strong>${crypto.name}</strong></p>
-            <p>Price: $${crypto.current_price.toLocaleString()}</p>
-            <p>Market Cap: $${crypto.market_cap.toLocaleString()}</p>
-          `;
-          cryptoContainer.appendChild(div);
-        });
-      } catch (error) {
-        console.error('Error fetching crypto data:', error);
-      }
-    }
-    fetchCrypto();
-  </script>
+        // Uncomment below to fetch real-time data
+        // fetchCryptoInsights();
+    </script>
 </body>
+
 </html>
