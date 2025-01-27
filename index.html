@@ -5,7 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>AI and Cryptocurrency</title>
   <style>
-    /* Styles omitted for brevity, same as previous */
+    /* Styles omitted for brevity */
+    body { font-family: Arial, sans-serif; }
+    h1, h2 { text-align: center; }
+    .crypto-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 20px; padding: 20px; }
+    .crypto-card { border: 1px solid #ccc; padding: 10px; border-radius: 10px; text-align: center; }
+    .news-section { margin: 20px auto; padding: 10px; }
   </style>
 </head>
 <body>
@@ -18,12 +23,6 @@
     <p>AI and cryptocurrency are redefining how we view finance. Discover how artificial intelligence is powering smarter investments and unlocking new potentials in blockchain technology.</p>
   </section>
 
-  <section class="projects">
-    <h2>My AI Projects</h2>
-    <img src="./images/Chatbot.jpg" alt="Chatbot Project">
-    <p>Explore my groundbreaking work in AI, including predictive tools and chatbots that simplify complex challenges in modern technology.</p>
-  </section>
-
   <section class="crypto-section">
     <h2>Top 100 Cryptocurrencies</h2>
     <div id="crypto-info" class="crypto-grid">
@@ -34,12 +33,12 @@
   <section class="news-section">
     <h2>Latest Pi Network News</h2>
     <div id="pi-news">
-      <!-- Pi network news will populate here -->
+      <!-- Pi Network news will populate here -->
     </div>
 
     <h2>Latest Ripple/XRP News</h2>
     <div id="xrp-news">
-      <!-- XRP news will populate here -->
+      <!-- Ripple/XRP news will populate here -->
     </div>
   </section>
 
@@ -48,21 +47,21 @@
   </footer>
 
   <script>
-    const apiKey = b19318523e614fa7b16f0924f2bfdb3a;
+    const apiKey = "b19318523e614fa7b16f0924f2bfdb3a"; // Replace with your NewsAPI key
 
-    // Fetch Top 100 Cryptos
+    // Fetch and render the top 100 cryptocurrencies
     async function fetchCrypto() {
       try {
         const response = await fetch('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=false');
         const cryptos = await response.json();
         const cryptoContainer = document.getElementById('crypto-info');
-        cryptoContainer.innerHTML = '';
+        cryptoContainer.innerHTML = ''; // Clear previous content
 
         cryptos.forEach((crypto) => {
           const div = document.createElement('div');
           div.className = 'crypto-card';
           div.innerHTML = `
-            <img src="${crypto.image}" alt="${crypto.name}">
+            <img src="${crypto.image}" alt="${crypto.name}" style="width: 50px; height: 50px;">
             <p><strong>${crypto.name}</strong></p>
             <p>Price: $${crypto.current_price.toLocaleString()}</p>
             <p>Market Cap: $${crypto.market_cap.toLocaleString()}</p>
@@ -74,13 +73,13 @@
       }
     }
 
-    // Fetch News for Pi Network
+    // Fetch and render Pi Network news
     async function fetchPiNews() {
       try {
         const response = await fetch(`https://newsapi.org/v2/everything?q=pi%20network&sortBy=publishedAt&apiKey=${apiKey}`);
         const data = await response.json();
         const piNewsContainer = document.getElementById('pi-news');
-        piNewsContainer.innerHTML = '';
+        piNewsContainer.innerHTML = ''; // Clear previous content
 
         data.articles.slice(0, 5).forEach((article) => {
           const div = document.createElement('div');
@@ -92,17 +91,17 @@
           piNewsContainer.appendChild(div);
         });
       } catch (error) {
-        console.error('Error fetching Pi news:', error);
+        console.error('Error fetching Pi Network news:', error);
       }
     }
 
-    // Fetch News for XRP/Ripple
+    // Fetch and render Ripple/XRP news
     async function fetchXrpNews() {
       try {
         const response = await fetch(`https://newsapi.org/v2/everything?q=ripple%20OR%20xrp&sortBy=publishedAt&apiKey=${apiKey}`);
         const data = await response.json();
         const xrpNewsContainer = document.getElementById('xrp-news');
-        xrpNewsContainer.innerHTML = '';
+        xrpNewsContainer.innerHTML = ''; // Clear previous content
 
         data.articles.slice(0, 5).forEach((article) => {
           const div = document.createElement('div');
@@ -114,11 +113,11 @@
           xrpNewsContainer.appendChild(div);
         });
       } catch (error) {
-        console.error('Error fetching XRP news:', error);
+        console.error('Error fetching Ripple/XRP news:', error);
       }
     }
 
-    // Call the functions
+    // Call the functions to load data
     fetchCrypto();
     fetchPiNews();
     fetchXrpNews();
