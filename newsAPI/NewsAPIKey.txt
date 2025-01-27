@@ -1,0 +1,1 @@
+NewsAPIKey: b19318523e614fa7b16f0924f2bfdb3a
