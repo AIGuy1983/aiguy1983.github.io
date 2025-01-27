@@ -1,130 +1,74 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI Guy Portfolio</title>
-    <style>
-        body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-            color: yellow;
-            background: url('AI.jpg') no-repeat center center fixed;
-            background-size: cover;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Crypto and AI Tracker</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: url('./images/AI.jpg') no-repeat center center fixed;
+      background-size: cover;
+      color: #fff;
+    }
 
-        header {
-            background-color: rgba(0, 0, 0, 0.7);
-            padding: 20px;
-            text-align: center;
-        }
+    header {
+      background-color: rgba(0, 0, 0, 0.7);
+      padding: 20px;
+      text-align: center;
+    }
 
-        header h1 {
-            margin: 0;
-            font-size: 2.5em;
-        }
+    .crypto-tracker {
+      background-color: rgba(0, 0, 0, 0.8);
+      padding: 20px;
+      margin: 20px auto;
+      max-width: 500px;
+      border-radius: 10px;
+    }
 
-        section {
-            padding: 20px;
-            background-color: rgba(0, 0, 0, 0.6);
-            margin: 20px;
-            border-radius: 10px;
-        }
+    .projects {
+      padding: 20px;
+      text-align: center;
+    }
 
-        .crypto-tracker {
-            padding: 20px;
-            background-color: rgba(0, 0, 0, 0.8);
-            color: yellow;
-            border-radius: 10px;
-            max-width: 600px;
-            margin: 20px auto;
-            text-align: center;
-        }
-
-        footer {
-            background-color: rgba(0, 0, 0, 0.8);
-            text-align: center;
-            padding: 10px;
-            position: fixed;
-            bottom: 0;
-            width: 100%;
-        }
-
-        input[type="text"] {
-            padding: 10px;
-            margin: 10px;
-            border: none;
-            border-radius: 5px;
-            width: 80%;
-            max-width: 400px;
-        }
-
-        button {
-            padding: 10px 20px;
-            margin: 10px;
-            border: none;
-            border-radius: 5px;
-            background-color: yellow;
-            color: black;
-            font-weight: bold;
-            cursor: pointer;
-        }
-
-        button:hover {
-            background-color: orange;
-        }
-
-        #crypto-data {
-            margin-top: 20px;
-        }
-    </style>
+    .projects img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 10px;
+    }
+  </style>
 </head>
-
 <body>
-    <header>
-        <h1>AI Guy Portfolio</h1>
-    </header>
+  <header>
+    <h1>Welcome to Crypto and AI Tracker</h1>
+  </header>
+  
+  <div class="crypto-tracker">
+    <h2>Crypto Price Tracker</h2>
+    <input type="text" id="cryptoSymbol" placeholder="Enter cryptocurrency (e.g., BTC)">
+    <button onclick="fetchCryptoPrice()">Get Price</button>
+    <p id="cryptoPrice"></p>
+  </div>
 
-    <section>
-        <h2>About Me</h2>
-        <p>I am an experienced AI developer and cryptocurrency enthusiast. I specialize in building AI tools and bots, creating insightful machine learning models, and exploring innovative ways to integrate AI with blockchain technologies. My projects reflect my passion for cutting-edge technology and my commitment to solving real-world problems.</p>
-    </section>
+  <div class="projects">
+    <h2>My Projects</h2>
+    <img src="./images/Chatbot.jpg" alt="Chatbot Project">
+  </div>
 
-    <div class="crypto-tracker">
-        <h2>Crypto Tracker</h2>
-        <input type="text" id="crypto-input" placeholder="Enter cryptocurrency (e.g., bitcoin)">
-        <button onclick="fetchCryptoData()">Get Price</button>
-        <div id="crypto-data"></div>
-    </div>
+  <script>
+    async function fetchCryptoPrice() {
+      const symbol = document.getElementById('cryptoSymbol').value.toUpperCase();
+      const url = `https://api.coingecko.com/api/v3/simple/price?ids=${symbol}&vs_currencies=usd`;
+      const response = await fetch(url);
+      const data = await response.json();
 
-    <footer>
-        <p>Contact me at <a href="mailto:aiguy1983@gmail.com">aiguy1983@gmail.com</a></p>
-    </footer>
-
-    <script>
-        async function fetchCryptoData() {
-            const cryptoName = document.getElementById('crypto-input').value.toLowerCase();
-            const apiUrl = `https://api.coingecko.com/api/v3/simple/price?ids=${cryptoName}&vs_currencies=usd`;
-
-            try {
-                const response = await fetch(apiUrl);
-                if (!response.ok) {
-                    throw new Error('Cryptocurrency not found');
-                }
-                const data = await response.json();
-                const price = data[cryptoName]?.usd;
-
-                if (price) {
-                    document.getElementById('crypto-data').innerHTML = `<p>The current price of <strong>${cryptoName}</strong> is $${price.toFixed(2)}</p>`;
-                } else {
-                    document.getElementById('crypto-data').innerHTML = `<p>Cryptocurrency not found. Please check the name and try again.</p>`;
-                }
-            } catch (error) {
-                document.getElementById('crypto-data').innerHTML = `<p>Error: ${error.message}</p>`;
-            }
-        }
-    </script>
+      const price = data[symbol.toLowerCase()]?.usd;
+      const priceText = price
+        ? `Current price of ${symbol}: $${price}`
+        : `Cryptocurrency ${symbol} not found.`;
+      document.getElementById('cryptoPrice').innerText = priceText;
+    }
+  </script>
 </body>
-
 </html>
