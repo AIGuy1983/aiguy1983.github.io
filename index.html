@@ -6,26 +6,33 @@
   <title>AI & Cryptocurrency: The Future of Finance</title>
   <style>
     body {
-      font-family: Arial, sans-serif;
+      font-family: 'Arial', sans-serif;
       margin: 0;
       padding: 0;
-      background-color: #f4f4f9;
-      color: #333;
+      background-color: #0a0a0a;
+      color: #e0e0e0;
     }
     header {
       background: linear-gradient(135deg, #6a11cb, #2575fc);
       color: white;
-      padding: 20px;
+      padding: 40px 20px;
       text-align: center;
     }
     h1, h2 {
       margin: 0;
     }
+    h1 {
+      font-size: 2.5rem;
+    }
+    h2 {
+      font-size: 2rem;
+      margin-bottom: 20px;
+    }
     .container {
       max-width: 1200px;
       margin: 20px auto;
       padding: 20px;
-      background: white;
+      background: #1a1a1a;
       border-radius: 10px;
       box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     }
@@ -36,15 +43,16 @@
       margin-top: 20px;
     }
     .crypto-card {
-      border: 1px solid #ddd;
+      border: 1px solid #333;
       padding: 15px;
       border-radius: 10px;
       text-align: center;
       transition: transform 0.2s, box-shadow 0.2s;
+      background: #262626;
     }
     .crypto-card:hover {
       transform: translateY(-5px);
-      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
     }
     .crypto-card img {
       width: 50px;
@@ -62,14 +70,16 @@
     .news-item {
       margin-bottom: 20px;
       padding: 15px;
-      border: 1px solid #ddd;
+      border: 1px solid #333;
       border-radius: 10px;
+      background: #262626;
     }
     .news-item h3 {
       margin: 0 0 10px;
+      color: #2575fc;
     }
     .news-item a {
-      color: #2575fc;
+      color: #6a11cb;
       text-decoration: none;
     }
     .news-item a:hover {
@@ -78,7 +88,7 @@
     footer {
       text-align: center;
       padding: 20px;
-      background: #333;
+      background: #1a1a1a;
       color: white;
       margin-top: 40px;
     }
@@ -165,9 +175,9 @@
       try {
         // Simulate AI predictions (replace with actual AI model API call)
         const predictions = [
-          { coin: 'Bitcoin', prediction: '$45,000' },
-          { coin: 'Ethereum', prediction: '$3,200' },
-          { coin: 'Ripple', prediction: '$1.50' },
+          { coin: 'Bitcoin', prediction: '$45,000', accuracy: '85%' },
+          { coin: 'Ethereum', prediction: '$3,200', accuracy: '80%' },
+          { coin: 'Ripple', prediction: '$1.50', accuracy: '75%' },
         ];
         aiContainer.innerHTML = ''; // Clear loading state
 
@@ -177,6 +187,7 @@
           div.innerHTML = `
             <p><strong>${pred.coin}</strong></p>
             <p>Predicted Price: ${pred.prediction}</p>
+            <p>Accuracy: ${pred.accuracy}</p>
           `;
           aiContainer.appendChild(div);
         });
