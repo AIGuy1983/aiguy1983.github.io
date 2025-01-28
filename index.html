@@ -116,11 +116,12 @@
       </div>
     </section>
 
-    <!-- AI Predictive Analytics Section -->
+    <!-- AI Section -->
     <section class="ai-section">
-      <h2>AI-Powered Price Predictions</h2>
-      <div id="ai-predictions">
-        <div class="loading">Loading AI predictions...</div>
+      <h2>AI Integration</h2>
+      <div id="ai-images">
+        <img src="images/AI.jpg" alt="AI" style="width: 100%; max-width: 400px; border-radius: 10px;">
+        <img src="images/Chatbot.jpg" alt="Chatbot" style="width: 100%; max-width: 400px; border-radius: 10px; margin-top: 20px;">
       </div>
     </section>
 
@@ -166,34 +167,6 @@
       } catch (error) {
         console.error('Error fetching crypto data:', error);
         cryptoContainer.innerHTML = '<div class="loading">Failed to load cryptocurrency data. Please try again later.</div>';
-      }
-    }
-
-    // Mock AI Predictive Analytics
-    async function fetchAIPredictions() {
-      const aiContainer = document.getElementById('ai-predictions');
-      try {
-        // Simulate AI predictions (replace with actual AI model API call)
-        const predictions = [
-          { coin: 'Bitcoin', prediction: '$45,000', accuracy: '85%' },
-          { coin: 'Ethereum', prediction: '$3,200', accuracy: '80%' },
-          { coin: 'Ripple', prediction: '$1.50', accuracy: '75%' },
-        ];
-        aiContainer.innerHTML = ''; // Clear loading state
-
-        predictions.forEach((pred) => {
-          const div = document.createElement('div');
-          div.className = 'crypto-card';
-          div.innerHTML = `
-            <p><strong>${pred.coin}</strong></p>
-            <p>Predicted Price: ${pred.prediction}</p>
-            <p>Accuracy: ${pred.accuracy}</p>
-          `;
-          aiContainer.appendChild(div);
-        });
-      } catch (error) {
-        console.error('Error fetching AI predictions:', error);
-        aiContainer.innerHTML = '<div class="loading">Failed to load AI predictions. Please try again later.</div>';
       }
     }
 
@@ -249,7 +222,6 @@
 
     // Call the functions to load data
     fetchCrypto();
-    fetchAIPredictions();
     fetchPiNews();
     fetchXrpNews();
   </script>
