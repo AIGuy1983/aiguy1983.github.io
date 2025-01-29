@@ -6,39 +6,42 @@
     <title>Crypto & News Dashboard</title>
     <style>
         body {
-            background: url('C:\Users\woodc\Desktop\Scrappers\Images\AI.jpg') no-repeat center center fixed;
+            background: url('./AI.jpg') no-repeat center center fixed;
             background-size: cover;
             color: white;
-            font-family: Arial, sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             text-align: center;
+            margin: 0;
+            padding: 0;
         }
 
-        #crypto-container {
-            background: rgba(0, 0, 0, 0.7);
+        #crypto-container, .news-section {
+            background: rgba(0, 0, 0, 0.8);
             padding: 20px;
-            border-radius: 10px;
+            border-radius: 15px;
             margin: 20px auto;
             max-width: 800px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
         }
 
         #chatbot-img {
             display: block;
-            width: 200px;
+            width: 250px;
             height: auto;
-            margin: 20px auto;
+            margin: 40px auto 20px;
+            border-radius: 50%;
+            border: 5px solid white;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
         }
 
         h1 {
             margin-top: 40px;
             font-size: 3rem;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
         }
 
-        .news-section {
-            background: rgba(0, 0, 0, 0.5);
-            padding: 15px;
-            border-radius: 10px;
-            margin: 10px auto;
-            max-width: 700px;
+        .news-section h2 {
+            font-size: 2rem;
             text-align: left;
         }
 
@@ -56,7 +59,7 @@
 
 <h1>Crypto & Latest News</h1>
 
-<img id="C:\Users\woodc\Desktop\Scrappers\Images\chatbot-img" src="Chatbot.jpg" alt="Chatbot Illustration">
+<img id="chatbot-img" src="./Chatbot.jpg" alt="Chatbot Illustration">
 
 <div id="crypto-container">
     <h2>Top 100 Cryptocurrencies</h2>
@@ -96,7 +99,7 @@ async function scrapePiNews() {
             { title: "Pi Network Milestone Reached", url: "https://crypto.news/tag/pi-network" },
             { title: "Pi Day Celebration Update", url: "https://pinewsmedia.com" }
         ];
-        
+
         const piNewsList = document.getElementById('pi-news-list');
         piNewsList.innerHTML = piArticles.map(article => `
             <li><a href="${article.url}" target="_blank">${article.title}</a></li>
@@ -113,7 +116,7 @@ async function scrapeXRPNews() {
             { title: "Ripple Announces New Partnership", url: "https://www.nasdaq.com/market-activity/cryptocurrency/xrp/news-headlines" },
             { title: "XRP Hits New High", url: "https://xrpl.org" }
         ];
-        
+
         const xrpNewsList = document.getElementById('xrp-news-list');
         xrpNewsList.innerHTML = xrpArticles.map(article => `
             <li><a href="${article.url}" target="_blank">${article.title}</a></li>
