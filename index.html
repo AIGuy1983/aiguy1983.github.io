@@ -1,88 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Crypto Dashboard</title>
-  <style>
-    body {
-      font-family: 'Arial', sans-serif;
-      background-color: #121212;
-      color: white;
-      margin: 0;
-      padding: 0;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-    .header {
-      text-align: center;
-      padding: 20px;
-      background: linear-gradient(135deg, #1f2937, #3b82f6);
-      width: 100%;
-    }
-    .crypto-section {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 20px;
-      max-width: 1200px;
-      width: 100%;
-      padding: 20px;
-    }
-    .news-section {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 20px;
-      margin-bottom: 20px;
-    }
-    .card {
-      background: rgba(255, 255, 255, 0.1);
-      border-radius: 10px;
-      padding: 20px;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
-      transition: transform 0.2s;
-    }
-    .card:hover {
-      transform: translateY(-5px);
-    }
-    .crypto-prices {
-      background: url('./images/Chatbot.jpg') no-repeat center center;
-      background-size: cover;
-      padding: 20px;
-      border-radius: 10px;
-    }
-    .title {
-      font-size: 24px;
-      text-align: center;
-      font-weight: bold;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Crypto Dashboard</title>
 </head>
 <body>
-  <div class="header">
-    <h1>AI-Powered Crypto News & Prices</h1>
-  </div>
+    <div class="main-container">
+        <header>
+            <h1>Crypto Dashboard</h1>
+        </header>
+        
+        <section id="pi-news" class="crypto-news">
+            <h2>Pi Network News</h2>
+            <p>Stay updated with the latest Pi Network developments...</p>
+        </section>
 
-  <!-- Pi and XRP News Section -->
-  <div class="news-section">
-    <div class="card">
-      <h2>Pi Network News</h2>
-      <p>Stay updated with the latest developments on Pi Network.</p>
-    </div>
-    <div class="card">
-      <h2>XRP News</h2>
-      <p>Get the latest on XRP and its market trends.</p>
-    </div>
-  </div>
+        <section id="xrp-news" class="crypto-news">
+            <h2>XRP News</h2>
+            <p>Latest news and trends on XRP...</p>
+        </section>
 
-  <!-- Crypto Prices Section -->
-  <div class="crypto-section">
-    <div class="crypto-prices card">
-      <h2>Crypto Prices</h2>
-      <p>Bitcoin: $35,000</p>
-      <p>Ethereum: $2,500</p>
-      <p>Pi Network: $0.003</p>
+        <section id="crypto-prices" class="crypto-section">
+            <h2>Crypto Prices</h2>
+            <div class="crypto-item">
+                <img src="./images/pi-thumbnail.jpg" alt="Pi Thumbnail">
+                <p>Pi: $3.14</p>
+            </div>
+            <div class="crypto-item">
+                <img src="./images/xrp-thumbnail.jpg" alt="XRP Thumbnail">
+                <p>XRP: $1.23</p>
+            </div>
+        </section>
+
+        <section id="other-news" class="crypto-news">
+            <h2>Other Crypto News</h2>
+            <p>Discover trending updates from the crypto world...</p>
+        </section>
     </div>
-  </div>
 </body>
 </html>
