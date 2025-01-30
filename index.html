@@ -29,14 +29,36 @@
             text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.8);
         }
 
-        #chatbot-img {
-            display: block;
-            width: 250px;
-            height: auto;
-            margin: 40px auto 20px;
-            border-radius: 50%;
-            border: 5px solid white;
+        #crypto-container {
+            padding: 20px;
+            background: url('./Chatbot.jpg') no-repeat center center/cover;
+            background-size: cover;
+            border-radius: 10px;
+            margin: 20px;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+        }
+
+        .crypto-item {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            padding: 10px;
+            background: rgba(0, 0, 0, 0.6);
+            margin: 10px 0;
+            border-radius: 8px;
+        }
+
+        .crypto-item img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            margin-right: 15px;
+        }
+
+        .crypto-item p {
+            margin: 0;
+            font-size: 1rem;
+            color: #ffd700;
         }
 
         .news-section {
@@ -58,12 +80,6 @@
         a:hover {
             text-decoration: underline;
         }
-
-        #crypto-container {
-            padding: 20px;
-            background: #303040;
-            border-radius: 10px;
-        }
     </style>
 </head>
 
@@ -71,8 +87,6 @@
     <header>
         <h1>Crypto & Latest News</h1>
     </header>
-
-    <img id="chatbot-img" src="./Chatbot.jpg" alt="Chatbot Illustration">
 
     <div id="crypto-container">
         <h2>Top 100 Cryptocurrencies</h2>
@@ -98,7 +112,10 @@
                 const cryptoContainer = document.getElementById('crypto-data');
 
                 cryptoContainer.innerHTML = data.map(coin => `
-                    <p><strong>${coin.name}</strong> (${coin.symbol.toUpperCase()}): $${coin.current_price.toLocaleString()}</p>
+                    <div class="crypto-item">
+                        <img src="${coin.image}" alt="${coin.name} logo">
+                        <p><strong>${coin.name}</strong> (${coin.symbol.toUpperCase()}): $${coin.current_price.toLocaleString()}</p>
+                    </div>
                 `).join('');
             } catch (error) {
                 console.error('Error fetching crypto data:', error);
