@@ -6,23 +6,28 @@
     <title>Crypto & News Dashboard</title>
     <style>
         body {
-           font-family: 'Poppins', sans-serif;
-           margin: 0;
-           padding: 0;
-           background-color: #1e1e2e;
-           color: #f8f8f8;
-    }
-    }
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #1e1e2e;
+            color: #f8f8f8;
+            text-align: center;
+        }
 
         header {
-           background: url('./images/AI.jpg') no-repeat center center/cover;
-           height: 60vh;
-           display: flex;
-           justify-content: center;
-           align-items: center;
-           text-align: center;
-           color: #fff;
-    }
+            background: url('./images/AI.jpg') no-repeat center center/cover;
+            height: 60vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: #fff;
+        }
+
+        header h1 {
+            font-size: 3rem;
+            text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.8);
+        }
 
         #chatbot-img {
             display: block;
@@ -34,15 +39,15 @@
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
         }
 
-        h1 {
-            margin-top: 40px;
-            font-size: 3rem;
-            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
+        .news-section {
+            margin-top: 20px;
+            padding: 20px;
         }
 
         .news-section h2 {
             font-size: 2rem;
             text-align: left;
+            color: #ffd700;
         }
 
         a {
@@ -53,218 +58,87 @@
         a:hover {
             text-decoration: underline;
         }
+
+        #crypto-container {
+            padding: 20px;
+            background: #303040;
+            border-radius: 10px;
+        }
     </style>
 </head>
+
 <body>
+    <header>
+        <h1>Crypto & Latest News</h1>
+    </header>
 
-<h1>Crypto & Latest News</h1>
+    <img id="chatbot-img" src="./Chatbot.jpg" alt="Chatbot Illustration">
 
-<img id="chatbot-img" src="./Chatbot.jpg" alt="Chatbot Illustration">
-
-<div id="crypto-container">
-    <h2>Top 100 Cryptocurrencies</h2>
-    <div id="crypto-data"></div>
-</div>
-
-<div class="news-section" id="pi-news">
-    <h2>Pi Network News</h2>
-    <ul id="pi-news-list"></ul>
-</div>
-
-<div class="news-section" id="xrp-news">
-    <h2>Ripple/XRP News</h2>
-    <ul id="xrp-news-list"></ul>
-</div>
-
-<script>
-async function fetchCryptoData() {
-    const apiUrl = 'https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=false';
-    try {
-        const response = await fetch(apiUrl);
-        const data = await response.json();
-        const cryptoContainer = document.getElementById('crypto-data');
-
-        cryptoContainer.innerHTML = data.map(coin => `
-            <p><strong>${coin.name}</strong> (${coin.symbol.toUpperCase()}): $${coin.current_price.toLocaleString()}</p>
-        `).join('');
-    } catch (error) {
-        console.error('Error fetching crypto data:', error);
-    }
-}
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AI and Cryptocurrency</title>
-  <style>
-    body {
-      font-family: 'Poppins', sans-serif;
-      margin: 0;
-      padding: 0;
-      background-color: #1e1e2e;
-      color: #f8f8f8;
-    }
-
-    header {
-      background: url('./images/AI.jpg') no-repeat center center/cover;
-      height: 60vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      color: #fff;
-    }
-
-    header h1 {
-      font-size: 3rem;
-      text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.8);
-    }
-
-    .intro {
-      text-align: center;
-      padding: 20px;
-      background: #252539;
-      margin-bottom: 20px;
-      border-radius: 10px;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
-    }
-
-    .intro h2 {
-      font-size: 2rem;
-      color: #ffd700;
-    }
-
-    .projects, .crypto-section {
-      padding: 20px;
-    }
-
-    .projects img, .crypto-section img {
-      max-width: 100%;
-      height: auto;
-      border-radius: 10px;
-      margin: 10px 0;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.6);
-    }
-
-    .crypto-section {
-      background: #303040;
-      padding: 20px;
-      border-radius: 10px;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
-    }
-
-    .crypto-section h2 {
-      font-size: 2rem;
-      margin-bottom: 20px;
-      color: #40c4ff;
-    }
-
-    .crypto-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-      gap: 20px;
-    }
-
-    .crypto-card {
-      background: #252539;
-      border-radius: 10px;
-      text-align: center;
-      padding: 15px;
-      color: #fff;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
-    }
-
-    .crypto-card img {
-      width: 50px;
-      height: 50px;
-      margin-bottom: 10px;
-    }
-
-    footer {
-      text-align: center;
-      padding: 20px;
-      background: #1b1b2f;
-      color: #aaa;
-      font-size: 0.9rem;
-    }
-
-    footer a {
-      color: #40c4ff;
-      text-decoration: none;
-    }
-  </style>
-</head>
-<body>
-  <header>
-    <h1>AI & Cryptocurrency: The Future of Finance</h1>
-  </header>
-
-  <section class="intro">
-    <h2>Welcome to the Revolution</h2>
-    <p>AI and cryptocurrency are redefining how we view finance. Discover how artificial intelligence is powering smarter investments and unlocking new potentials in blockchain technology.</p>
-  </section>
-
-  <section class="projects">
-    <h2>My AI Projects</h2>
-    <img src="./images/Chatbot.jpg" alt="Chatbot Project">
-    <p>Explore my groundbreaking work in AI, including predictive tools and chatbots that simplify complex challenges in modern technology.</p>
-  </section>
-
-  <section class="crypto-section">
-    <h2>Top 100 Cryptocurrencies</h2>
-    <div id="crypto-info" class="crypto-grid">
-      <!-- Crypto cards will populate here -->
+    <div id="crypto-container">
+        <h2>Top 100 Cryptocurrencies</h2>
+        <div id="crypto-data"></div>
     </div>
-  </section>
 
-  <footer>
-    <p>Contact me: <a href="mailto:aiguy1983@gmail.com">aiguy1983@gmail.com</a></p>
-  </footer>
+    <div class="news-section" id="pi-news">
+        <h2>Pi Network News</h2>
+        <ul id="pi-news-list"></ul>
+    </div>
 
-  }
+    <div class="news-section" id="xrp-news">
+        <h2>Ripple/XRP News</h2>
+        <ul id="xrp-news-list"></ul>
+    </div>
 
+    <script>
+        async function fetchCryptoData() {
+            const apiUrl = 'https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=false';
+            try {
+                const response = await fetch(apiUrl);
+                const data = await response.json();
+                const cryptoContainer = document.getElementById('crypto-data');
 
-async function scrapePiNews() {
-    try {
-        // Placeholder for Pi Network scraping logic
-        const piArticles = [
-            { title: "Pi Network Milestone Reached", url: "https://crypto.news/tag/pi-network" },
-            { title: "Pi Day Celebration Update", url: "https://pinewsmedia.com" }
-        ];
+                cryptoContainer.innerHTML = data.map(coin => `
+                    <p><strong>${coin.name}</strong> (${coin.symbol.toUpperCase()}): $${coin.current_price.toLocaleString()}</p>
+                `).join('');
+            } catch (error) {
+                console.error('Error fetching crypto data:', error);
+            }
+        }
 
-        const piNewsList = document.getElementById('pi-news-list');
-        piNewsList.innerHTML = piArticles.map(article => `
-            <li><a href="${article.url}" target="_blank">${article.title}</a></li>
-        `).join('');
-    } catch (error) {
-        console.error('Error fetching Pi news:', error);
-    }
-}
+        async function scrapePiNews() {
+            try {
+                const piArticles = [
+                    { title: "Pi Network Milestone Reached", url: "https://crypto.news/tag/pi-network" },
+                    { title: "Pi Day Celebration Update", url: "https://pinewsmedia.com" }
+                ];
+                const piNewsList = document.getElementById('pi-news-list');
+                piNewsList.innerHTML = piArticles.map(article => `
+                    <li><a href="${article.url}" target="_blank">${article.title}</a></li>
+                `).join('');
+            } catch (error) {
+                console.error('Error fetching Pi news:', error);
+            }
+        }
 
-async function scrapeXRPNews() {
-    try {
-        // Placeholder for Ripple/XRP scraping logic
-        const xrpArticles = [
-            { title: "Ripple Announces New Partnership", url: "https://www.nasdaq.com/market-activity/cryptocurrency/xrp/news-headlines" },
-            { title: "XRP Hits New High", url: "https://xrpl.org" }
-        ];
+        async function scrapeXRPNews() {
+            try {
+                const xrpArticles = [
+                    { title: "Ripple Announces New Partnership", url: "https://www.nasdaq.com/market-activity/cryptocurrency/xrp/news-headlines" },
+                    { title: "XRP Hits New High", url: "https://xrpl.org" }
+                ];
+                const xrpNewsList = document.getElementById('xrp-news-list');
+                xrpNewsList.innerHTML = xrpArticles.map(article => `
+                    <li><a href="${article.url}" target="_blank">${article.title}</a></li>
+                `).join('');
+            } catch (error) {
+                console.error('Error fetching XRP news:', error);
+            }
+        }
 
-        const xrpNewsList = document.getElementById('xrp-news-list');
-        xrpNewsList.innerHTML = xrpArticles.map(article => `
-            <li><a href="${article.url}" target="_blank">${article.title}</a></li>
-        `).join('');
-    } catch (error) {
-        console.error('Error fetching XRP news:', error);
-    }
-}
-
-// Initialize
-fetchCryptoData();
-scrapePiNews();
-scrapeXRPNews();
-</script>
-
+        // Initialize functions
+        fetchCryptoData();
+        scrapePiNews();
+        scrapeXRPNews();
+    </script>
 </body>
 </html>
