@@ -1,43 +1,60 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <title>Crypto Dashboard</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Crypto Dashboard</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="main-container">
-        <header>
-            <h1>Crypto Dashboard</h1>
-        </header>
-        
-        <section id="pi-news" class="crypto-news">
-            <h2>Pi Network News</h2>
-            <p>Stay updated with the latest Pi Network developments...</p>
-        </section>
+  <div class="crypto-dashboard">
+    <header>
+      <h1>Crypto Dashboard</h1>
+    </header>
 
-        <section id="xrp-news" class="crypto-news">
-            <h2>XRP News</h2>
-            <p>Latest news and trends on XRP...</p>
-        </section>
+    <main>
+      <!-- Pi and XRP News moved to the top -->
+      <section id="pi-news" class="crypto-news">
+        <h2>Pi Network News</h2>
+        <ul>
+          <li>Pi Network hits new milestone with X million users!</li>
+          <li>Pi coin expected to release on exchanges soon.</li>
+        </ul>
+      </section>
 
-        <section id="crypto-prices" class="crypto-section">
-            <h2>Crypto Prices</h2>
-            <div class="crypto-item">
-                <img src="./images/pi-thumbnail.jpg" alt="Pi Thumbnail">
-                <p>Pi: $3.14</p>
-            </div>
-            <div class="crypto-item">
-                <img src="./images/xrp-thumbnail.jpg" alt="XRP Thumbnail">
-                <p>XRP: $1.23</p>
-            </div>
-        </section>
+      <section id="xrp-news" class="crypto-news">
+        <h2>XRP News</h2>
+        <ul>
+          <li>Ripple secures major win in court case!</li>
+          <li>XRPL to introduce new features enhancing scalability.</li>
+        </ul>
+      </section>
 
-        <section id="other-news" class="crypto-news">
-            <h2>Other Crypto News</h2>
-            <p>Discover trending updates from the crypto world...</p>
-        </section>
-    </div>
+      <section id="crypto-prices" class="crypto-section">
+        <h2>Crypto Prices</h2>
+        <div class="crypto-card">
+          <h3>Bitcoin (BTC)</h3>
+          <p>$45,000</p>
+        </div>
+        <div class="crypto-card">
+          <h3>Ethereum (ETH)</h3>
+          <p>$3,200</p>
+        </div>
+        <div class="crypto-card">
+          <h3>Cardano (ADA)</h3>
+          <p>$1.20</p>
+        </div>
+      </section>
+
+      <section id="market-insights" class="crypto-section">
+        <h2>Market Insights</h2>
+        <p>Bitcoin surges as market sentiment turns bullish.</p>
+      </section>
+    </main>
+
+    <footer>
+      <p>© 2025 Crypto Dashboard</p>
+    </footer>
+  </div>
 </body>
 </html>
