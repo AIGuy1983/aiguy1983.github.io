@@ -1,60 +1,166 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Crypto Dashboard</title>
-  <link rel="stylesheet" href="styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crypto & News Dashboard</title>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #1e1e2e;
+            color: #f8f8f8;
+            text-align: center;
+        }
+
+        header {
+            background: url('./images/AI.jpg') no-repeat center center/cover;
+            height: 60vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: #fff;
+        }
+
+        header h1 {
+            font-size: 3rem;
+            text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.8);
+        }
+
+         .crypto-container {
+             position: relative;
+             background: url('./images/Chatbot.jpg') no-repeat center center;
+             background-size: cover;
+             padding: 20px;
+             border-radius: 10px;
+             color: white;
+       }
+
+        .crypto-item {
+            background-color: rgba(0, 0, 0, 0.6); /* Transparent background to make text readable */
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 8px;
+       }
+
+        .crypto-item img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            margin-right: 15px;
+        }
+
+        .crypto-item p {
+            margin: 0;
+            font-size: 1rem;
+            color: #ffd700;
+        }
+
+       .crypto-prices {
+            position: relative;
+            background: url('./images/Chatbot.jpg') no-repeat center center;
+            background-size: cover;
+            padding: 20px;
+            border-radius: 10px;
+            color: white;	
+
+        .news-section {
+            margin-top: 20px;
+            padding: 20px;
+        }
+
+        .news-section h2 {
+            font-size: 2rem;
+            text-align: left;
+            color: #ffd700;
+        }
+
+        a {
+            color: #00e6e6;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
 </head>
+
 <body>
-  <div class="crypto-dashboard">
     <header>
-      <h1>Crypto Dashboard</h1>
+        <h1>Crypto & Latest News</h1>
     </header>
 
-    <main>
-      <!-- Pi and XRP News moved to the top -->
-      <section id="pi-news" class="crypto-news">
+    <div id="crypto-container">
+        <h2>Top 100 Cryptocurrencies</h2>
+        <div id="crypto-data"></div>
+    </div>
+
+    <div class="news-section" id="pi-news">
         <h2>Pi Network News</h2>
-        <ul>
-          <li>Pi Network hits new milestone with X million users!</li>
-          <li>Pi coin expected to release on exchanges soon.</li>
-        </ul>
-      </section>
+        <ul id="pi-news-list"></ul>
+    </div>
 
-      <section id="xrp-news" class="crypto-news">
-        <h2>XRP News</h2>
-        <ul>
-          <li>Ripple secures major win in court case!</li>
-          <li>XRPL to introduce new features enhancing scalability.</li>
-        </ul>
-      </section>
+    <div class="news-section" id="xrp-news">
+        <h2>Ripple/XRP News</h2>
+        <ul id="xrp-news-list"></ul>
+    </div>
 
-      <section id="crypto-prices" class="crypto-section">
-        <h2>Crypto Prices</h2>
-        <div class="crypto-card">
-          <h3>Bitcoin (BTC)</h3>
-          <p>$45,000</p>
-        </div>
-        <div class="crypto-card">
-          <h3>Ethereum (ETH)</h3>
-          <p>$3,200</p>
-        </div>
-        <div class="crypto-card">
-          <h3>Cardano (ADA)</h3>
-          <p>$1.20</p>
-        </div>
-      </section>
+    <script>
+        async function fetchCryptoData() {
+            const apiUrl = 'https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=false';
+            try {
+                const response = await fetch(apiUrl);
+                const data = await response.json();
+                const cryptoContainer = document.getElementById('crypto-data');
 
-      <section id="market-insights" class="crypto-section">
-        <h2>Market Insights</h2>
-        <p>Bitcoin surges as market sentiment turns bullish.</p>
-      </section>
-    </main>
+                cryptoContainer.innerHTML = data.map(coin => `
+                    <div class="crypto-item">
+                        <img src="${coin.image}" alt="${coin.name} logo">
+                        <p><strong>${coin.name}</strong> (${coin.symbol.toUpperCase()}): $${coin.current_price.toLocaleString()}</p>
+                    </div>
+                `).join('');
+            } catch (error) {
+                console.error('Error fetching crypto data:', error);
+            }
+        }
 
-    <footer>
-      <p>© 2025 Crypto Dashboard</p>
-    </footer>
-  </div>
+        async function scrapePiNews() {
+            try {
+                const piArticles = [
+                    { title: "Pi Network Milestone Reached", url: "https://crypto.news/tag/pi-network" },
+                    { title: "Pi Day Celebration Update", url: "https://pinewsmedia.com" }
+                ];
+                const piNewsList = document.getElementById('pi-news-list');
+                piNewsList.innerHTML = piArticles.map(article => `
+                    <li><a href="${article.url}" target="_blank">${article.title}</a></li>
+                `).join('');
+            } catch (error) {
+                console.error('Error fetching Pi news:', error);
+            }
+        }
+
+        async function scrapeXRPNews() {
+            try {
+                const xrpArticles = [
+                    { title: "Ripple Announces New Partnership", url: "https://www.nasdaq.com/market-activity/cryptocurrency/xrp/news-headlines" },
+                    { title: "XRP Hits New High", url: "https://xrpl.org" }
+                ];
+                const xrpNewsList = document.getElementById('xrp-news-list');
+                xrpNewsList.innerHTML = xrpArticles.map(article => `
+                    <li><a href="${article.url}" target="_blank">${article.title}</a></li>
+                `).join('');
+            } catch (error) {
+                console.error('Error fetching XRP news:', error);
+            }
+        }
+
+        // Initialize functions
+        fetchCryptoData();
+        scrapePiNews();
+        scrapeXRPNews();
+    </script>
 </body>
 </html>
